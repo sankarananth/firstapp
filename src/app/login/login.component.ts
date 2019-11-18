@@ -34,27 +34,28 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginForm.value);
     this.isSubmitted = true;
     if (this.loginForm.invalid) {
       return;
     }
-    this.authservice.login(this.loginForm.value).subscribe(x => {
+    this.authservice.login(this.loginForm.value)
+    .subscribe(x => {
       x.forEach(element => {
         this.users.r_id = element["r_id"];
       })
-      console.log(this.users.r_id)
       if (this.users.r_id == 1) {
-        this.message="";
         this.router.navigate(['product']);
         this.toastr.info('Welcome Admin')
       }
       else if(this.users.r_id == 2) 
       {
-        this.message="";
         this.router.navigate(['user']);
         this.toastr.info('Welcome User')
       }
-    },error => this.router.navigate(['login'])),this.message="Invalid Username or Password";
+      else{
+        this.message="Invalid Username or password"
+      }
+    },(error) =>{console.log(error)}
+    );
   }
 }

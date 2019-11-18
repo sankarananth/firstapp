@@ -11,6 +11,7 @@
     <button (click)="logOut()"  class="btn btn-primary">Logout</button>
   </li>
 </ul>
+<input type="text" [(ngModel)]="searchString" (ngModelChange)="search(searchString)" class="form-control" style="width: 500px;">
 <div class="panel panel-primary">
     <div class="panel-heading">
     </div>
@@ -27,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products | async ">
+          <tr *ngFor="let product of products | async | paginate:{itemsPerPage:2,currentPage:p};let i=index">
             <td>{{product.productid}}</td>
             <td>{{product.productname}}</td>
             <td>{{product.productdesc}}</td>
@@ -45,5 +46,6 @@
           </tr>
         </tbody>
       </table>
+      <pagination-controls (pageChange)="p=$event"></pagination-controls>
     </div>
   </div>

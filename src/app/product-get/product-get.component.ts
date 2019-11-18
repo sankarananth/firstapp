@@ -42,6 +42,15 @@ export class ProductGetComponent implements OnInit {
    this.authservice.logout();
    this.router.navigate(['login']);
  }
+ search(productname:string)
+ {
+   console.log(productname)
+   this.products=this.service.searchProduct(productname);
+   if(productname=="")
+   {
+     this.products=this.service.GetProductList();
+   }
+ }
 
 
 }

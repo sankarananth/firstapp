@@ -12,6 +12,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { UserComponent } from './user/user.component';
     ToastrModule.forRoot(),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
-    })
+    }),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

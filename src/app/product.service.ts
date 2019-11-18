@@ -32,4 +32,8 @@ export class ProductService {
   {
     return this.http.delete(this.rootUrl+'/Products/'+id)
   }
+  searchProduct(name:string):Observable<any>
+  {
+    return this.http.get(this.rootUrl+'/Products?name='+name)
+  }
 }

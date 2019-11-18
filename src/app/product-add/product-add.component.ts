@@ -44,5 +44,6 @@ export class ProductAddComponent implements OnInit {
     this.authservice.logout();
     this.router.navigate(['login']);
   }
+  
 
 }

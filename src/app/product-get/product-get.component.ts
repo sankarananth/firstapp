@@ -18,12 +18,14 @@ export class ProductGetComponent implements OnInit {
   public popoverMessage: string = 'Do you want to delete this product?';
   public confirmClicked: boolean = false;
   public cancelClicked: boolean = false;
+  username:string;
 
   constructor(private service:ProductService,private toastr:ToastrService,private router:Router,private authservice:AuthService) { }
   products:Observable<Product[]>
   
   ngOnInit() {
     this.products=this.service.GetProductList();
+    this.username=localStorage.getItem('userID')
   }
   DeleteProduct(id:number)
   {
@@ -40,5 +42,6 @@ export class ProductGetComponent implements OnInit {
    this.authservice.logout();
    this.router.navigate(['login']);
  }
+
 
 }

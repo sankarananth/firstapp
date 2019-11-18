@@ -1,0 +1,41 @@
+<h1 class="display-4" style="text-align: center;">{{title}}</h1>
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    <a class="nav-link active" href="addproduct">Add Product</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="product">Product List</a>
+  </li>
+  <li class="nav-item">
+    <button (click)="logOut()"  class="btn btn-primary">Logout</button>
+  </li>
+</ul>
+<form [formGroup]="productform" (ngSubmit)="UpdateProduct()">
+    <input type="hidden" #Productid [(ngModel)]="product.productid" formControlName="productid">
+    <div class="form-group" [ngClass]="{'has-error': isSubmitted && formControls.productname.errors || formControls.productname.touched || formControls.productname.dirty }">
+      <label for="productname">Product Name</label>
+      <input #Productname [(ngModel)]="product.productname" type="text" class="form-control" placeholder="example:Diary Milk" formControlName="productname">
+    </div>
+    <div *ngIf="isSubmitted && formControls.productname.errors" class="help-block">
+      <div *ngIf="formControls.productname.errors.required">Name is required</div>
+  </div>
+    <div class="form-group" [ngClass]="{'has-error': isSubmitted && formControls.productdesc.errors || formControls.productdesc.touched || formControls.productdesc.dirty }">
+        <label for="productdesc">Product Description</label>
+        <textarea #Productdesc [(ngModel)]="product.productdesc"  class="form-control" formControlName="productdesc" placeholder="Enter the Description" rows="3"></textarea>
+    </div>
+    <div *ngIf="isSubmitted && formControls.productdesc.errors" class="help-block">
+      <div *ngIf="formControls.productdesc.errors.required">Enter a Valid Description</div>
+  </div>
+    <div class="form-group">
+      <label for="manudate">Manufacturing Date</label>
+      <input #Manudate [(ngModel)]="product.manudatestr" type="date" class="form-control" formControlName="manudate">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': isSubmitted && formControls.productprice.errors || formControls.productprice.touched || formControls.productprice.dirty }">
+        <label for="productprice">Product Price</label>
+        <input #Productprice type="number" [(ngModel)]="product.productprice" class="form-control"  placeholder="name@example.com" formControlName="productprice">
+    </div>
+    <div *ngIf="isSubmitted && formControls.productprice.errors" class="help-block">
+      <div *ngIf="formControls.productprice.errors.required">Enter a Valid Description</div>
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>

@@ -1,0 +1,48 @@
+<h1 class="display-4" style="text-align: center;">{{title}}</h1>
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    <a class="nav-link active" href="addproduct">Add Product</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="product">Product List</a>
+  </li>
+  <li class="nav-item">
+    <button (click)="logOut()"  class="btn btn-primary">Logout</button>
+  </li>
+</ul>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Manufacturing Year</th>
+            <th>Product Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products | async ">
+            <td>{{product.productid}}</td>
+            <td>{{product.productname}}</td>
+            <td>{{product.productdesc}}</td>
+            <td>{{product.manudate |date:'dd/MM/yyyy'}} </td>
+            <td>{{product.productprice}}</td>
+            <td><button
+              mwlConfirmationPopover
+              [popoverTitle]="popoverTitle"
+              [popoverMessage]="popoverMessage"
+              placement="left"
+              (confirm)="confirmClicked = true"
+              (cancel)="cancelClicked = true" confirmButtonType="warning" cancelButtonType="default" (click)="confirmClicked=false;cancelClicked=false" [appendToBody]="true" (confirm)=DeleteProduct(product.productid) class="btn btn-danger">Delete</button>
+              <button [routerLink]="['/updateproduct',product.productid]"  class="btn btn-info" style="margin-left: 10px">Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
